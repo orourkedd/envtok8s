@@ -28,7 +28,7 @@ func ReadEnv(filepath string) ([]ENVPairs, error) {
 
 	entries := []ENVPairs{}
 	for _, line := range trimmedLines {
-		parts := strings.Split(line, ":")
+		parts := strings.Split(line, "=")
 
 		if len(parts) < 2 {
 			return []ENVPairs{}, fmt.Errorf("env must have key/value pairs: %v", parts)
@@ -36,7 +36,7 @@ func ReadEnv(filepath string) ([]ENVPairs, error) {
 
 		if len(parts) > 2 {
 			for i := 2; i < len(parts); i++ {
-				parts[1] = fmt.Sprintf("%s:%s", parts[1], parts[i])
+				parts[1] = fmt.Sprintf("%s=%s", parts[1], parts[i])
 			}
 		}
 
