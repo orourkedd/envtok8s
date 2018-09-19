@@ -18,7 +18,11 @@ func TestReadEnv(t *testing.T) {
 
 	assert.Equal(t, "ENV", env[2].Key)
 	assert.Equal(t, "test", env[2].Value)
+
+	assert.Equal(t, "SERVICEBUS_CONNECTION_STRING", env[3].Key)
+	assert.Equal(t, "Endpoint=sb://test.servicebus.windows.net/;SharedAccessKeyName=FOO;SharedAccessKey=BAR=", env[3].Value)
 }
+
 func TestCreateSecret(t *testing.T) {
 	env, err := ReadEnv(".env.test")
 	assert.Nil(t, err)
@@ -36,6 +40,7 @@ data:
   SECRET: U0VDUkVUVkFMVUU=
   WITHEQUALS: QUJDPTEyMz1ERUY9NDU2
   ENV: dGVzdA==
+  SERVICEBUS_CONNECTION_STRING: RW5kcG9pbnQ9c2I6Ly90ZXN0LnNlcnZpY2VidXMud2luZG93cy5uZXQvO1NoYXJlZEFjY2Vzc0tleU5hbWU9Rk9PO1NoYXJlZEFjY2Vzc0tleT1CQVI9
 `
 
 	actual := CreateSecret(env, secretName, namespace)
