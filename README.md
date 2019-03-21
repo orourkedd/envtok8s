@@ -23,11 +23,11 @@ data:
 
 ### Usage
 ```
-envtok8s --file=.env --namespace=default --secret-name=my-service-secrets
+envtok8s --file=.env --namespace=default --secret-name=my-service-secrets | kubectl apply -f -
 ```
 
 
 ### Usage with defaults
 ```
-envtok8s --secret-name=my-service-secrets
+envtok8s --secret-name=my-service-secrets | kubectl apply -f -
 ```
